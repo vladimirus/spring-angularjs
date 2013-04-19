@@ -27,7 +27,7 @@ public class BookController {
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   public @ResponseBody Book find(@PathVariable("id") Integer id) {
     Book book = this.bookRepository.findById(id);
-    if(book == null) {
+    if (book == null) {
       throw new BookNotFoundException(id);
     }
     return book;
@@ -54,8 +54,6 @@ public class BookController {
     book.setId(id);
     this.bookRepository.save(book);
   }
-
-
 
 
   private URI childLocation(StringBuffer parentUri, Object childId) {

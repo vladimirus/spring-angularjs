@@ -7,17 +7,17 @@ import java.util.List;
  */
 public interface BookRepository {
 
-    /**
-     * Find a <code>Book</code> by ID.
-     *
-     * @param id the ID of the book.
-     * @return the book, or <code>null</code> if no book is found.
-     */
-    Book findById(Integer id);
+  /**
+   * Find a <code>Book</code> by ID.
+   *
+   * @param id the ID of the book.
+   * @return the book, or <code>null</code> if no book is found.
+   */
+  Book findById(Integer id);
 
-    List<Book> findAll();
+  List<Book> findAll();
 
-    Book save(Book book);
+  Book save(Book book);
 
-    void delete(Integer id);
+  void delete(Integer id);
 }
