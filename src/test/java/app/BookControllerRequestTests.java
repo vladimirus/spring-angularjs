@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -62,14 +63,14 @@ public class BookControllerRequestTests {
         .andExpect(status().isNotFound());
   }
 
-  @Test
+  @Test @DirtiesContext
   public void deleteBook() throws Exception {
     mockMvc.perform(delete("/books/{id}", 1))
         .andExpect(status().isNoContent());
     assertNull(this.repository.findById(1));
   }
 
-  @Test
+  @Test @DirtiesContext
   public void createBook() throws Exception {
     Book book = new Book("Pro Struts", new Author("Rob", "Harrop"));
     ObjectMapper mapper = new ObjectMapper();
@@ -81,7 +82,7 @@ public class BookControllerRequestTests {
     assertNotNull(this.repository.findById(2));
   }
 
-  @Test
+  @Test @DirtiesContext
   public void updateBook() throws Exception {
     Book book = new Book("Pro Struts", new Author("Rob", "Harrop"));
     ObjectMapper mapper = new ObjectMapper();
