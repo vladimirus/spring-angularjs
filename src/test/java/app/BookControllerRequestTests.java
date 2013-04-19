@@ -33,9 +33,6 @@ public class BookControllerRequestTests {
   @Autowired
   protected BookRepository repository;
 
-  @Autowired
-  protected ConversionService conversionService;
-
   @Before
   public void setup() {
     this.mockMvc = webAppContextSetup(this.wac).build();
