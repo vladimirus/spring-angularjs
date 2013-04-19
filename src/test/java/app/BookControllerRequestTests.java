@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("file:src/main/webapp/WEB-INF/app-servlet.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/api-servlet.xml")
 public class BookControllerRequestTests {
   private MockMvc mockMvc;
 
