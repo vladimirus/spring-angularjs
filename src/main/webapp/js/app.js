@@ -1,7 +1,11 @@
 angular.module("sprang.services", ["ngResource"]).
     factory('Book', function ($resource) {
-        return $resource('/api/books/:bookId', {bookId: '@id'},
+        var Book = $resource('/api/books/:bookId', {bookId: '@id'},
             {update: {method: 'PUT'}});
+        Book.prototype.isNew = function(){
+            return (typeof(this.id) === 'undefined');
+        }
+        return Book;
     });
 
 angular.module("sprang", ["sprang.services"]).
@@ -16,7 +20,7 @@ function BookListController($scope, Book) {
 
     $scope.deleteBook = function(book) {
         book.$delete(function() {
-            $scope.books.splice($scope.books.indexOf(book));
+            $scope.books.splice($scope.books.indexOf(book),1);
             toastr.success("Deleted");
         });
     }
@@ -32,7 +36,7 @@ function BookDetailController($scope, $routeParams, $location, Book) {
     }
 
     $scope.save = function () {
-        if (typeof($scope.book.id) === 'undefined') {
+        if ($scope.book.isNew()) {
             $scope.book.$save(function (book, headers) {
                 toastr.success("Created");
                 var location = headers('Location');
