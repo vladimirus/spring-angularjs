@@ -1,7 +1,5 @@
 toastr = {
-    name: "Rob",
     success: function (msg) {
-        console.log(this);
         console.log(msg);
     }
 }
