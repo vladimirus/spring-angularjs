@@ -18,6 +18,11 @@ namespace :test do
     task :run => 'npm:install' do
       sh "#{KARMA} start #{KARMA_CONFIG} --single-run"
     end
+
+    desc "Start the CI Runner"
+    task :ci  => 'npm:install' do
+      sh "#{KARMA} start #{KARMA_CONFIG} --browsers PhantomJS --single-run --reporters progress,junit"
+    end
   end
 
   task :mvn do
@@ -25,4 +30,4 @@ namespace :test do
   end
 end
 
-task :ci => ["test:mvn", "test:karma:run"]
+task :ci => ["test:mvn", "test:karma:ci"]
